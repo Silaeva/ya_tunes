@@ -39,7 +39,7 @@ const videoPlayerInit = () => {
 
   videoBtnStop.addEventListener('click', stopPlay);
 
-  videoPlayer.addEventListener('timeupdate', () => {
+  const setTimeProgress = () => {
     const currentTime = videoPlayer.currentTime;
     const duration = videoPlayer.duration;
 
@@ -53,6 +53,16 @@ const videoPlayerInit = () => {
 
     videoTimePassed.textContent = `${addZero(mitutePassed)}:${addZero(secondsPassed)}`;
     videoTimeTotal.textContent = `${addZero(mituteTotal)}:${addZero(secondsTotal)}`;
+  }
+
+  videoPlayer.addEventListener('timeupdate', setTimeProgress);
+
+  videoProgress.addEventListener('mousedown', () => {
+    videoPlayer.removeEventListener('timeupdate', setTimeProgress);
+  });
+
+  videoProgress.addEventListener('mouseup', () => {
+    videoPlayer.addEventListener('timeupdate', setTimeProgress);
   });
 
   videoProgress.addEventListener('change', () => {
