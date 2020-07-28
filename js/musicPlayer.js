@@ -1,3 +1,5 @@
-export const musicPlayerInit = () => {
-   
+const musicPlayerInit = () => {
+
 }
+
+export { musicPlayerInit };

@@ -1,3 +1,5 @@
-export const radioPlayerInit = () => {
-  
+const radioPlayerInit = () => {
+
 }
+
+export { radioPlayerInit };
