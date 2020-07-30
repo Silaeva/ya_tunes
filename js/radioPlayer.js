@@ -6,6 +6,7 @@ const radioPlayerInit = () => {
   const radioItem = radio.querySelectorAll('.radio-item');
   const radioStop = radio.querySelector('.radio-stop');
   const radioVolume = radio.querySelector('.radio-volume');
+  const radioMute = radio.querySelector('.radio-mute');
 
   const audio = new Audio();
   audio.type = 'audio/aac';
@@ -53,12 +54,23 @@ const radioPlayerInit = () => {
 
   radioVolume.addEventListener('input', () => {
     audio.volume = radioVolume.value / 100;
+    prevVolume = audio.volume;
   })
 
   audio.volume = 0.5;
 
   radioVolume.value = audio.volume * 100;
 
+  let prevVolume = 1; 
+
+  radioMute.addEventListener('click', () => {
+    if(audio.volume) {
+      prevVolume = audio.volume;
+      audio.volume = 0;
+    } else {
+      audio.volume = prevVolume;
+    }
+  })
 }
 
 export { radioPlayerInit };

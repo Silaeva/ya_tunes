@@ -1,3 +1,5 @@
+import {addZero} from './supportScripts.js';
+
 const videoPlayerInit = () => {
 
   const videoPlayer = document.querySelector('.video-player');
@@ -33,8 +35,6 @@ const videoPlayerInit = () => {
       togglePlay();
     }
   });
-
-  const addZero = n => n < 10 ? '0' + n : n;
 
   videoPlayer.addEventListener('play', toggleIcon);
   videoPlayer.addEventListener('pause', toggleIcon);
