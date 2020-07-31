@@ -28,7 +28,7 @@ const musicPlayerInit = () => {
   };
 
   const switchOnPrevTrack = () => {
-    trackIndex !== 0 ? trackIndex-- : trackIndex = playList.length - 1;
+    trackIndex ? trackIndex-- : trackIndex = playList.length - 1;
     loadTrack();
   }
 
@@ -89,7 +89,16 @@ const musicPlayerInit = () => {
     const allWidth = audioProgress.clientWidth;
     const progress = (x / allWidth) * audioPlayer.duration;
     audioPlayer.currentTime = progress;
-    })
+  });
+
+  musicPlayerInit.stop = () => {
+    if (!audioPlayer.paused) {
+      audioPlayer.pause();
+      audio.classList.remove('play');
+      audioButtonPlay.classList.remove('fa-pause');
+      audioButtonPlay.classList.add('fa-play');
+    }
+  }
 }
 
 export { musicPlayerInit };
